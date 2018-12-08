@@ -1,19 +1,17 @@
-const { Led, Board } = require('johnny-five');
-const board = new Board();
+const five = require('johnny-five');
+const board = new five.Board();
 board.on('ready', onReady);
 
 function onReady() {
   // if we don't pass a port to the Led constructor it will use
   // the default port (built-in LED)
-  const led = new Led(22);
+  const led = new five.Led(11);
 
-  // This will grant access to the led instance
-  // from within the REPL that's created when
-  // running this program.
-  board.repl.inject({
-      led: led
-  });
+  setInterval(() => {
+    led.fadeIn()
 
-  led.blink();
-  // run in the REPL led.stop() to make it stop blinking
+    // Toggle the led after 5 seconds (shown in ms)
+    setTimeout(() => {led.fadeOut()}, 1000)
+
+  }, 2000)
 }
