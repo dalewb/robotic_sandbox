@@ -13,12 +13,9 @@ board.on("ready", function() {
    */
 
   var stepper = new five.Stepper({
-    type: five.Stepper.TYPE.DRIVER,
+    type: five.Stepper.TYPE.FOUR_WIRE,
     stepsPerRev: 200,
-    pins: {
-      step: 12,
-      dir: 11
-    }
+    pins: [3,4,5,6]
   });
 
   // Make 10 full revolutions counter-clockwise at 180 rpm with acceleration and deceleration
